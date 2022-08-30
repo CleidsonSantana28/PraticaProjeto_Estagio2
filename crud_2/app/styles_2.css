@@ -1,0 +1,31 @@
+body{
+    background-image: linear-gradient(to right, rgb(20,147,220), rgb(17,54,71));
+    font-family: Arial;
+}
+h2{
+    border: 2px solid black;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+}
+.box{
+        position: absolute;
+        padding: 15px;
+        border-radius: 50px;
+        width: 20%;
+}
+form{
+    width: 330px;
+    background-color: rgba(0,0,0,.2);
+    padding: 20px;
+    margin: 30px  auto;
+}
+#btcadastrar{
+    border: 2px solid black;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20pt;
+}
+
