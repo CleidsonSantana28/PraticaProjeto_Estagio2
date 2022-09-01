@@ -29,3 +29,7 @@ form{
     font-size: 20pt;
 }
 
+input,label{
+    display: block;
+}
+
