@@ -1,0 +1,59 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: arial;
+}
+
+label,input{
+    display: block;/* coloca o input e o label um sobre o outro*/
+    line-height: 30px;
+    height: 30px;
+    font-size: 13pt;
+    width: 100%;
+}
+form{
+    width: 330px;
+    background-color: rgba(0,0,0,0.2);/*tranparência em cinza do formulário*/
+    padding: 20px;
+    margin: 30px auto;
+}
+    input[type="submit"]{
+        margin-top: 10px;
+        cursor: pointer;/* troca o formato do cursor para mão quando estar sobre o botão*/
+}
+#esquerda{
+    width: 35%;
+    height: 500px;
+    float: left;/*colocar o <section> e forma de coluna um do lado do outro*/
+}
+h2{
+   text-align: center; 
+}
+#direita{
+    width: 65%;
+    height: 500px;
+    float: left;/*colocar o <section> e forma de coluna um do lado do outro*/
+}
+table{
+    background-color: rgba(0,0,0,0.2);
+    width: 90%;
+    margin: auto;
+}
+tr{
+    line-height: 30px;
+}
+tr#titulo{
+    font-weight: bold;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+}
+td{
+    padding: 0px 5px;
+}
+a{
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin: 0px 5px;
+    text-decoration: none;
+}
