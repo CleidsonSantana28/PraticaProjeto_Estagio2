@@ -28,4 +28,23 @@ class Pessoa
         $res = $cmd->fetchAll(PDO::FETCH_ASSOC); //array
         return $res;
     }
+    //FUNÇÃO DE CADASTRAR PESSOAS NO BANCO DE DADOS
+    public function cadastrarPessoas($nome, $email, $telefone)
+    {
+        //ANTES DE CADASTRAR VERIFICAR SE JA TEM O EMAIL CADASTRADO
+        $cmd = $this->cnx->prepare("SELECT idContato FROM cadastro_contato WHERE emailContato = :e");
+        $cmd->bindValue(":e", $email);
+        $cmd->execute();
+        if ($cmd->rowCount() > 0) {
+            return false;
+        } else //não foi encontrado o email
+        {
+            $cmd = $this->cnx->prepare("INSERT INTO cadastro_contato(nomeContato, emailContato, telContato) VALUES(:n, :e, :t)");
+            $cmd->bindValue(":n", $nome);
+            $cmd->bindValue(":e", $email);
+            $cmd->bindValue(":t", $telefone);
+            $cmd->execute();
+            return true;
+        }
+    }
 }
