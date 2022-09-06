@@ -13,18 +13,34 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
 </head>
 
 <body>
+    <?php
+    if (isset($_POST['nome'])) {
+        //addslashes - um proteção contra codigo malicosos
+        $nome = addslashes($_POST['nome']);
+        $email = addslashes($_POST['email']);
+        $telefone = addslashes($_POST['telefone']);
+        if (!empty($nome) && !empty($email) && !empty($telefone))
+            //cadastrar
+            if (!$p->cadastrarPessoas($nome, $email, $telefone)) {
+                echo "Email ja esta cadastrado!";
+            }
+    } else {
+        echo "Preencha todos os campos";
+    }
+
+    ?>
     <section id="esquerda">
-        <form action="">
+        <form method="POST">
             <h2>CADASTRAR PESSOA</h2>
 
             <label for="nome">Nome</label>
             <input type="text" name="nome" id="nome">
 
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+
             <label for="telefone">Telefone</label>
             <input type="text" name="telefone" id="telefone">
-
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email">
 
             <input type="submit" value="Cadastrar">
         </form>
@@ -39,8 +55,9 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
                 <td colspan="2">Telefone</td>
             </tr>
             <?php
-                $dados = $p->buscarDados();
-                if (count($dados) > 0) {
+            $dados = $p->buscarDados();
+            if (count($dados) > 0) //se tem pessoas no banco de dados
+            {
                 for ($i = 0; $i < count($dados); $i++) {
                     echo "<tr>";
                     foreach ($dados[$i] as $key => $value) {
@@ -55,12 +72,14 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
                 }
                 ?>
             <?php
+            } else //o banco de dados esta vazio
+            {
+                echo "Ainda não há pessoas cadastradas";
             }
             ?>
         </table>
 
     </section>
-
 </body>
 
 </html>
