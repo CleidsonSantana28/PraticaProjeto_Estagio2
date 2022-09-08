@@ -66,7 +66,10 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
                         }
                     }
             ?>
-                    <td><a href="">Editar</a><a href="">Excluir</a></td>
+                    <td>
+                        <a href="">Editar</a>
+                        <a href="index.php?idContato=<?php echo $dados[$i]['idContato'];?>">Excluir</a>
+                    </td>
                 <?php
                     echo "</tr>";
                 }
@@ -83,3 +86,12 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
 </body>
 
 </html>
+
+<?php
+if(isset($_GET['idContato']))
+{
+    $id_pessoa = addcslashes($_GET['idContato']);
+    $p->excluirPessoa($id_pessoa);
+    header("location: index.php");
+}
+?>
