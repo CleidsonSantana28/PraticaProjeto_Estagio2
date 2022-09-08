@@ -29,20 +29,30 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
         echo "Preencha todos os campos";
     }
     ?>
+        <?php
+            if(isset($_GET['id_up']))
+            {
+                $id_update = addslashes($_GET['id_up']);
+                $res = $p->buscarDadosPessoa($id_update);
+
+            }
+        ?>
+
+
     <section id="esquerda">
         <form method="POST">
             <h2>CADASTRAR PESSOA</h2>
 
             <label for="nome">Nome</label>
-            <input type="text" name="nome" id="nome">
+            <input type="text" name="nome" id="nome" value="<?php if(isset($res)){echo $res['nomeContato'];}?>">
 
             <label for="email">Email</label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" value="<?php if(isset($res)){echo $res['emailContato'];}?>">
 
             <label for="telefone">Telefone</label>
-            <input type="text" name="telefone" id="telefone">
+            <input type="text" name="telefone" id="telefone" value="<?php if(isset($res)){echo $res['telContato'];}?>">
 
-            <input type="submit" value="Cadastrar">
+            <input type="submit" value="<?php if(isset($res)){echo "Atualizar";}else{echo "Cadastrar";} ?>">
         </form>
 
     </section>
@@ -67,7 +77,7 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
                     }
             ?>
                     <td>                    
-                        <a href="">Editar</a>
+                        <a href="index.php?id_up=<?php echo $dados[$i]['idContato'];?>">Editar</a>
                         <a href="index.php?id=<?php echo $dados[$i]['idContato'];?>">Excluir</a>
                     </td>
                 <?php
