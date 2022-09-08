@@ -7,6 +7,7 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
     <title>Principal</title>
@@ -27,7 +28,6 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
     } else {
         echo "Preencha todos os campos";
     }
-
     ?>
     <section id="esquerda">
         <form method="POST">
@@ -66,9 +66,9 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
                         }
                     }
             ?>
-                    <td>
+                    <td>                    
                         <a href="">Editar</a>
-                        <a href="index.php?idContato=<?php echo $dados[$i]['idContato'];?>">Excluir</a>
+                        <a href="index.php?id=<?php echo $dados[$i]['idContato'];?>">Excluir</a>
                     </td>
                 <?php
                     echo "</tr>";
@@ -88,9 +88,10 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
 </html>
 
 <?php
-if(isset($_GET['idContato']))
+
+if(isset($_GET['id']))
 {
-    $id_pessoa = addcslashes($_GET['idContato']);
+    $id_pessoa = addslashes($_GET['id']);
     $p->excluirPessoa($id_pessoa);
     header("location: index.php");
 }
