@@ -47,4 +47,11 @@ class Pessoa
             return true;
         }
     }
+
+    public function excluirPessoa($id)
+    {
+        $cmd = $this->cnx->prepare("DELETE FROM cadastro_contato WHERE idContato = :id");
+        $cmd->bindValue(":id", $id);
+        $cmd->execute();
+    }
 }
