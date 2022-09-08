@@ -54,4 +54,15 @@ class Pessoa
         $cmd->bindValue(":id", $id);
         $cmd->execute();
     }
+    //BUSCAR DADOS DE UMA PESSOA
+    public function buscarDadosPessoa($id)
+    {
+        $cmd = $this->cnx->prepare("SELECT * FROM cadastro_contato WHERE idContato = :id");
+        $cmd->bindValue(":id",$id);
+        $cmd->execute();
+        $res=$cmd->fetch(PDO::FETCH_ASSOC);
+        //como a consulta é para uma pessoa usa o fetch(), se fosse para mais de uma recomenda-se o fecthAll
+        //(PDO::FETCH_ASSOC) > PARA ECONOMIZAR NO USO DA MEMORIA
+        return $res;
+    }
 }
