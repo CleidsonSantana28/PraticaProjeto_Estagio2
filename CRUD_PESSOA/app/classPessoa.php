@@ -65,4 +65,13 @@ class Pessoa
         //(PDO::FETCH_ASSOC) > PARA ECONOMIZAR NO USO DA MEMORIA
         return $res;
     }
+    public function atualizarDados($id, $nome, $email, $telefone)
+    {
+        $cmd = $this->cnx->prepare("UPDATE cadastro_contato SET nomeContato = :n, emailContato = :e, telContato = :t WHERE idContato = :id");
+        $cmd->bindValue(":n",$nome);
+        $cmd->bindValue(":e",$email);
+        $cmd->bindValue(":t",$telefone);
+        $cmd->bindValue(":id",$id);
+        $cmd->execute();
+    }
 }
