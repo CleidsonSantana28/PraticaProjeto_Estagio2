@@ -15,7 +15,62 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
 
 <body>
     <?php
+    //CLICOU NO BOTÃO CADASTRAR OU EDITAR
     if (isset($_POST['nome'])) {
+        //-----------------editar-----------------
+        if(isset($_GET['id_up']) && !empty($_GET['id_up']))
+        {
+            $id_upd =  addslashes($_POST['id_up']);
+            $nome = addslashes($_POST['nome']);
+            $email = addslashes($_POST['email']);
+            $telefone = addslashes($_POST['telefone']);
+                if(!empty($nome) && !empty($email) && !empty($telefone))
+                {
+            //editar
+                 $p->atualizarDados($id_upd, $nome, $email, $telefone);
+                    header("location: index.php");
+                 }
+            else   
+             {
+                
+                ?>
+                <div class="aviso">
+                    <img src="aviso.png" alt="">
+                    <h4>Preencha todos os campos</h4>
+                </div>
+                
+                <?php
+            }
+        }
+        }
+        //------------cadastra-----------
+        else
+        {
+            $nome = addslashes($_POST['nome']);
+            $email = addslashes($_POST['email']);
+            $telefone = addslashes($_POST['telefone']);
+                if (!empty($nome) && !empty($email) && !empty($telefone))
+            //cadastrar
+                 if (!$p->cadastrarPessoas($nome, $email, $telefone)) {
+                    ?>
+                    <div class="aviso">
+                        <img src="aviso.png" alt="">
+                        <h4>Email ja esta cadastrado!</h4>
+                    </div>
+                    
+                    <?php
+            }   
+            else 
+            {
+                ?>
+                <div class="aviso">
+                    <img src="aviso.png" alt="">
+                    <h4>Preencha todos os campos</h4>
+                </div>
+                
+                <?php
+            }
+        }
         //addslashes - um proteção contra codigo malicosos
         $nome = addslashes($_POST['nome']);
         $email = addslashes($_POST['email']);
@@ -23,14 +78,27 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
         if (!empty($nome) && !empty($email) && !empty($telefone))
             //cadastrar
             if (!$p->cadastrarPessoas($nome, $email, $telefone)) {
-                echo "Email ja esta cadastrado!";
+                ?>
+                <div class="aviso">
+                    <img src="aviso.png" alt="">
+                    <h4>Email ja esta cadastrado!</h4>
+                </div>
+                
+                <?php
             }
-    } else {
-        echo "Preencha todos os campos";
-    }
+             else 
+            {
+                ?>
+                <div>
+                    <img src="aviso.jpg" alt="">
+                    <h4>Preencha todos os campos</h4>
+                </div>
+                
+                <?php
+            }
     ?>
         <?php
-            if(isset($_GET['id_up']))
+            if(isset($_GET['id_up']))// SE A PESSOA CLICOU EM EDITAR
             {
                 $id_update = addslashes($_GET['id_up']);
                 $res = $p->buscarDadosPessoa($id_update);
@@ -66,8 +134,8 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
             </tr>
             <?php
             $dados = $p->buscarDados();
-            if (count($dados) > 0) //se tem pessoas no banco de dados
-            {
+            //se tem pessoas no banco de dados
+            if (count($dados) > 0)             {
                 for ($i = 0; $i < count($dados); $i++) {
                     echo "<tr>";
                     foreach ($dados[$i] as $key => $value) {
@@ -85,13 +153,19 @@ $p = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
                 }
                 ?>
             <?php
-            } else //o banco de dados esta vazio
-            {
-                echo "Ainda não há pessoas cadastradas";
-            }
+            } 
+            else //o banco de dados esta vazio
+        {
             ?>
         </table>
-
+        ?>
+                <div class="aviso">
+                    <h4>Ainda não há pessoas cadastradas</h4>
+                </div>
+                
+                <?php
+                }
+                ?>
     </section>
 </body>
 

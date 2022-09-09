@@ -57,3 +57,18 @@ a{
     margin: 0px 5px;
     text-decoration: none;
 }
+.aviso{
+    background-color: red;
+    width: 90%;
+    height: 50%;
+    margin: 30px auto 0px auto;
+}
+img{
+    width: 50px;
+    display: block;
+    float: left;
+}
+h4{
+    float: left;
+    line-height: 50px;
+}
