@@ -5,7 +5,17 @@ class Pessoa
 {
     private $cnx; //armazema todas as informações dessa conexão com o banco
     // PRIVATE > QUANDO E RELACIONADO A ORIENTAÇÃO A OBJETO
-    // 6 funções
+    /*
+         6 funções
+
+        1 - CONEXÃO COM O BANCO
+        2 - BUSCAR DADOS
+        3 - CADASTRA PESSOAS
+        4 - EXCLUIR LINHA
+        5 - BUSCAR DADOS DA PESSOA
+        6 - ATUALIZAR DADOS
+
+    */
     // conexão dom o banco de dados
     public function __construct($dbname, $host, $user, $senha)
     {
