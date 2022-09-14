@@ -31,6 +31,7 @@ $pessoa = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
                
                     header("location: index.php");
                  }
+            
             else   
              {
                 
@@ -43,14 +44,16 @@ $pessoa = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
                 <?php
             }
         }
-        }
+        
+        
         //------------CADASTRAR-----------
+        //addslashes - um proteção contra codigo malicosos
         else
         {
             $nome = addslashes($_POST['nome']);
             $email = addslashes($_POST['email']);
             $telefone = addslashes($_POST['telefone']);
-                if (!empty($nome) && !empty($email) && !empty($telefone))
+                if (!empty($nome) && !empty($email) && !empty($telefone)){
             //CADASTRAR
                  if (!$pessoa->cadastrarPessoas($nome, $email, $telefone)) {
                     ?>
@@ -60,7 +63,8 @@ $pessoa = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
                     </div>
                     
                     <?php
-            }   
+            } 
+        }  
             else 
             {
                 ?>
@@ -72,11 +76,13 @@ $pessoa = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
                 <?php
             }
         }
-        //addslashes - um proteção contra codigo malicosos
-        $nome = addslashes($_POST['nome']);
-        $email = addslashes($_POST['email']);
-        $telefone = addslashes($_POST['telefone']);
-        if (!empty($nome) && !empty($email) && !empty($telefone))
+        
+            //----------CODIGO PARA CADASTRO DESATIVADO POS ESTAVA EXCEDENDO NO PROJETO - EM ANALISE!!
+            /*
+            $nome = addslashes($_POST['nome']);
+            $email = addslashes($_POST['email']);
+            $telefone = addslashes($_POST['telefone']);
+            if (!empty($nome) && !empty($email) && !empty($telefone))
             //CADASTRAR
             if (!$pessoa->cadastrarPessoas($nome, $email, $telefone)) {
                 ?>
@@ -96,20 +102,25 @@ $pessoa = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
                 </div>
                 
                 <?php
+                */
             }
-    ?>
-        <?php
+        
+        
+    
+        
+            ?>
+            <?php
             if(isset($_GET['id_up']))// SE A PESSOA CLICOU EM EDITAR
             {
                 $id_update = addslashes($_GET['id_up']);
                 $res = $pessoa->buscarDadosPessoa($id_update);
 
             }
-        ?>
+            ?>
 
-    <section id="esquerda">
-        <!-- --------------------------FORMULARIO---------------------- -->
-        <form method="POST">
+            <section id="esquerda">
+            <!-- --------------------------FORMULARIO---------------------- -->
+            <form method="POST">
             <h2>CADASTRAR PESSOA</h2>
 
             <label for="nome">Nome</label>
@@ -123,6 +134,7 @@ $pessoa = new Pessoa("cadastrosimples", "127.0.0.1", "cleidson", "C@santos123");
 
             <input type="submit" value="<?php if(isset($res)){echo "Atualizar";}else{echo "Cadastrar";} ?>">
                     <!--AO CLICAR NO "EDITAR" O NOME DO BOTÃO ALTERA PARA ATUALIZAR-->
+                    <input type="reset" name="reset" value="Limpar" id="btReset">
 
         </form>
 
