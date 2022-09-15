@@ -1,4 +1,5 @@
 <?php
+
 //criado uma classe, um construtor e também um metodo para buscar as informações do banco de dados
 //uma Classe é um conjunto de variáveis e funções relacionadas a essas variáveis.
 class Pessoa
