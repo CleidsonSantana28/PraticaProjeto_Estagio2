@@ -4,9 +4,11 @@
 //uma Classe é um conjunto de variáveis e funções relacionadas a essas variáveis.
 class Pessoa
 {
+    public $cmd;
+    /*
     private $cnx; //armazema todas as informações dessa conexão com o banco
     // PRIVATE > QUANDO E RELACIONADO A ORIENTAÇÃO A OBJETO
-    /*
+    /
          6 funções
 
         1 - CONEXÃO COM O BANCO
@@ -16,7 +18,7 @@ class Pessoa
         5 - BUSCAR DADOS DA PESSOA
         6 - ATUALIZAR DADOS
 
-    */
+    /
     // conexão dom o banco de dados
     public function __construct($dbname, $host, $user, $senha)
     {
@@ -31,11 +33,12 @@ class Pessoa
             //exit();
         }
     }
+    */
     // função para buscar dados e colocar no canto direito
     public function buscarDados()
     {
         $res = array(); //caso $res retorne vazio
-        $cmd = $this->cnx->query("SELECT * FROM cadastro_contato");
+        $cmd -> cnx->query("SELECT * FROM cadastro_contato");
         $res = $cmd->fetchAll(PDO::FETCH_ASSOC); //array
         return $res;
     }

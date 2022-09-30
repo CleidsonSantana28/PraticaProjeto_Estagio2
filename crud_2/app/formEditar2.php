@@ -7,7 +7,15 @@ $consulta = $conectar->query("SELECT * FROM criancas WHERE idcriancas = '$id'");
 $linha = $consulta->fetch(PDO::FETCH_ASSOC);
 
 ?>
-
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 <form action="editar2.php" method="POST">
     <h2>EDITAR CADASTRO</h2>
 
@@ -26,3 +34,6 @@ $linha = $consulta->fetch(PDO::FETCH_ASSOC);
 Um campo oculto permite que os desenvolvedores da Web incluam dados que não podem 
 ser vistos ou modificados pelos usuários quando um formulário é enviado.-->
 </form>
+</body>
+</html>
+
