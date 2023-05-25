@@ -1,0 +1,12 @@
+/* Estilo para o menu suspenso */
+#menu,#botao-confirmar {
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Estilo para as opções do menu */
+#menu option {
+  background-color: #f1f1f1;
+  color: #333;
+}
+/* Botão */
